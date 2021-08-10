@@ -1,0 +1,39 @@
+<html>
+
+<head> <meta charset="UTF-8">
+<title> document </title>
+ </head>
+ <body>
+ <?php
+ include "links.html";
+ ?>
+ <form action = "site.php" method="post">
+Username: <input type = "text" name="user">
+Password: <input type = "password" name="pass">
+<input type ="submit" name="submit">
+</form>
+<?php
+$myFile = fopen("file.txt","a");
+$txt = "Username: " . $_POST["user"] . "\n";
+$txt2 = "Password: " . $_POST["pass"] . "\n";
+fwrite($myFile, $txt);
+fwrite($myFile, $txt2);
+fclose ($myFile);
+//echo file_get_contents("file.txt");
+$user = $_POST["user"];
+$pass = $_POST["pass"];
+if (isset($_POST["submit"])){
+if ($user == "admin" and $pass == "admin"){
+	echo "ACCESS GRANTED";
+	//include "game.php";
+
+}
+else {
+	echo "INVALID DETAILS";
+	
+}}
+	?>
+<br>
+<a href="game.php">game </a>
+ </body>
+ </html>
